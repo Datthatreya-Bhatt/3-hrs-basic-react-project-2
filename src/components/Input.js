@@ -7,22 +7,24 @@ import ProductContext from "../store/Product-Context";
 
 const Input = ()=>{
 
-    const productcntxt = useContext(ProductContext);
 
     const [medName, setMedName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(0);
 
+    const productcntxt = useContext(ProductContext);
+    
+
     function addToCartHandler(){
         let temp = {medName: medName, description: description, price: price, quantity: quantity };
-        productcntxt.addItem([...productcntxt.items, temp]);
-        // console.log(productcntxt.items)
+        productcntxt.addItem(temp);
+        
 
     }
 
     return (
-        <>
+        <div className="container">
             <label>Medicine Name</label>
             <input type="text" className="" defaultValue={''} onChange={(e) => setMedName(e.target.value) }/>
 
@@ -39,7 +41,9 @@ const Input = ()=>{
             <input type="button" className=""  value={'Add to store'} onClick={addToCartHandler}/>
         
         
-        </>
+        </div>
+       
+
     )
 };
 

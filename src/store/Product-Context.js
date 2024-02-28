@@ -1,12 +1,6 @@
 import React from "react";
 
 
-const ProductContext = React.createContext({
-    items: [],
-    addItem: (element)=>{},
-    removeItem: (id)=>{}
-   
-
-});
+const ProductContext = React.createContext({});
 
 export default ProductContext;

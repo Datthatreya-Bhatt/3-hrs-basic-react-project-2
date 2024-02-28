@@ -16,20 +16,21 @@ const Show = ()=>{
         let temp = productcntxt.items.filter((element, i)=>{
                return i === key ? element:  '';
         })
+        temp[0].quantity = temp[0].quantity-1 > 0 ? temp[0].quantity-1 : 'Out of stock'; 
 
-        cartCntxt.addItem(temp)
+        
+        cartCntxt.addToCart(...temp)
     }
 
     return (
         <>
+            <h1>Products Available</h1>
 
            { productcntxt.items.map((element, i) => {
-                return <div key={i}>
-                    <li>{element.medName}</li>
-                    <li>{element.description}</li>
-                    <li>{element.price}</li>
-                    <li>{element.quantity}</li>
-                    <input type="button"  value={'Add to cart'} onClick={()=> cartHandler(i)} />
+                return <div key={i} className="container">
+                    <li>{element.medName} {element.description} {element.price} {element.quantity}
+                    <input className="me-2" type="button" disabled={element.quantity === 'Out of stock' ? true: false} value={'Add to cart'} onClick={()=> cartHandler(i)} />
+                    </li>
                 </div>
             })}
            

@@ -1,17 +1,19 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 
 import Input from "./Input";
 import Show from "./Show";
 import CartForm from "./CartForm";
 
+import CartContext from "../store/Cart-Context";
+
 
 const Body = ()=>{
 
-    const [cartOpen, setCartOpen] = useState(false);
+    const cartCntxt = useContext(CartContext);
     return (
         <>
             <Input/>
-            {cartOpen && <CartForm setCartOpen={setCartOpen} cartOpen={cartOpen}/>}
+            {cartCntxt.cartOpen && <CartForm/>}
             <Show/>
         
         </>

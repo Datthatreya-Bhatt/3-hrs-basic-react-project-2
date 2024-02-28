@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 
 import CartContext from "./Cart-Context";
@@ -7,19 +7,30 @@ import CartContext from "./Cart-Context";
 
 const CartProvider = (props)=>{
 
-    const [items, setItems] = useState([]);
+    const [cartOpen, setCartOpen] = useState(false);
+    const [totalAmount, setTotalAmount] = useState(0);
+
+    const [arr, setArr] = useState([]);
 
 
-    function addItem(element){
-        setItems([...items, element])
+    function addToCart(element){
+        setArr([...arr, element]);
+        setTotalAmount(totalAmount + Number(element.price));
+
+
+    
     }
 
-
-
+    
 
     const cartCntxt = {
-        items: items,
-        addItem: addItem,
+        cartOpen: cartOpen,
+        setCartOpen: setCartOpen,
+        arr: arr,
+        setArr: setArr,
+        addToCart: addToCart,
+        totalAmount: totalAmount,
+        setTotalAmount: setTotalAmount
         
 
     }
